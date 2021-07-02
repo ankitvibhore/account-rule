@@ -1,0 +1,19 @@
+[
+  {
+    "rule_namespace": "Treatment",
+    "rule_id": "1",
+    "condition":"(account.treatmentTool==FRP || account.treatmentTool==CARE)",
+    "action":"parametres.setTreatment = true",
+    "priority":1,
+    "description": "Treatment Rule"
+
+  },
+  {
+    "rule_namespace": "Offer",
+    "rule_id": "1",
+    "condition":"(account.offerTag==OASIS || account.offerTag==APOLO)",
+    "action":"parametres.setOffer = true",
+    "priority":1,
+    "description": "Offer Rule"
+  }
+]
