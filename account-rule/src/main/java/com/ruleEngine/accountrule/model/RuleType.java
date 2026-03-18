@@ -2,8 +2,16 @@ package com.ruleEngine.accountrule.model;
 
 public class RuleType {
 
-    Boolean isOffer;
-    Boolean isTreatment;
+    private Boolean isOffer;
+    private Boolean isTreatment;
+
+    public RuleType() {
+    }
+
+    public RuleType(Boolean isOffer, Boolean isTreatment) {
+        this.isOffer = isOffer;
+        this.isTreatment = isTreatment;
+    }
 
     public Boolean getOffer() {
         return isOffer;

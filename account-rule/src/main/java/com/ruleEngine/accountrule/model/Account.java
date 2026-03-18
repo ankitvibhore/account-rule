@@ -1,13 +1,13 @@
 package com.ruleEngine.accountrule.model;
 
-import java.util.Date;
-
-
 public class Account {
 
-    Integer placementDate;
-    String offerTag;
-    String treatmentTool;
+    private Integer placementDate;
+    private String offerTag;
+    private String treatmentTool;
+
+    public Account() {
+    }
 
     public Account(Integer placementDate, String offerTag, String treatmentTool) {
         this.placementDate = placementDate;
@@ -38,6 +38,4 @@ public class Account {
     public void setTreatmentTool(String treatmentTool) {
         this.treatmentTool = treatmentTool;
     }
-
-
 }

@@ -47,7 +47,7 @@ public abstract class RuleEngine<INPUT_DATA, OUTPUT_RESULT> {
 
     protected Rule resolve(List<Rule> conflictSet){
         Optional<Rule> rule = conflictSet.stream()
-                .findFirst();
+                .min(Rule::compareTo);
         if (rule.isPresent()){
             return rule.get();
         }

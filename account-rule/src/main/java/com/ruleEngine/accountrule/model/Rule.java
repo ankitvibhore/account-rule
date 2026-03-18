@@ -3,7 +3,15 @@ package com.ruleEngine.accountrule.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ruleEngine.accountrule.enums.RuleNamespace;
 
-public class Rule {
+import java.util.Comparator;
+import java.util.Objects;
+
+public class Rule implements Comparable<Rule> {
+
+    public static final Comparator<Rule> PRIORITY_COMPARATOR =
+            Comparator.comparingInt(Rule::getPriority)
+                    .reversed()
+                    .thenComparing(Rule::getRuleId, Comparator.nullsLast(String::compareTo));
 
     @JsonProperty("rule_id")
     private  String ruleId;
@@ -68,6 +76,24 @@ public class Rule {
         this.description = description;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Rule)) {
+            return false;
+        }
+        Rule rule = (Rule) o;
+        return priority == rule.priority && Objects.equals(ruleId, rule.ruleId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ruleId, priority);
+    }
+
     @Override
     public String toString() {
         return "Rule{" +
@@ -78,5 +104,13 @@ public class Rule {
                 ", ruleNamespace='" + ruleNamespace + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Rule otherRule) {
+        if (otherRule == null) {
+            return -1;
+        }
+        return PRIORITY_COMPARATOR.compare(this, otherRule);
     }
 }
